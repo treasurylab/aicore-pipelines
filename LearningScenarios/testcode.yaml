@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: test-pipeline # executable id, must be unique across all your workflows (YAML files), please modify this to any value (e.g. code-pipeline-12345) if you are not the only user of your SAP AI Core instance.
+  name: test-pipeline
   annotations:
     scenarios.ai.sap.com/description: "Test Code for Prediction"
     scenarios.ai.sap.com/name: "Test Code"
@@ -12,18 +12,17 @@ metadata:
     ai.sap.com/version: "1.0"
 spec:
   imagePullSecrets:
-    - name: testcode # your docker registry secret
+    - name: testcode
   entrypoint: mypipeline
   templates:
   - name: mypipeline
     steps:
     - - name: mypredictor
-        template: mycodeblocktest
+        template: testcode  # Fixed template reference
 
-  - name: testcode
+  - name: testcode  # This is the template definition you are referencing
     container:
-      image: docker.io/dhwani108/test-code:01 # Your docker image name
+      image: docker.io/dhwani108/test-code:01
       command: ["/bin/sh", "-c"]
       args:
         - "python /app/src/main.py"
-
