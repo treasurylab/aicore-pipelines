@@ -18,7 +18,7 @@ spec:
   - name: mypipeline
     steps:
     - - name: mypredictor
-        template: mycodeblock1
+        template: mycodeblocktest
 
   - name: testcode
     container:
