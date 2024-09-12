@@ -9,7 +9,7 @@ metadata:
     executables.ai.sap.com/name: "Test Code Execution"
   labels:
     scenarios.ai.sap.com/id: "learning-code"
-    ai.sap.com/version: "13.0"
+    ai.sap.com/version: "14.0"
 spec:
   imagePullSecrets:
     - name: testcode
@@ -22,7 +22,7 @@ spec:
 
   - name: testcode  # This is the template definition you are referencing
     container:
-      image: docker.io/dhwani108/test-code:13
+      image: docker.io/dhwani108/test-code:14
       command: ["/bin/sh", "-c"]
       args:
         - "python /app/src/main.py"
